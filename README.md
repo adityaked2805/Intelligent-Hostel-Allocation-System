@@ -111,21 +111,6 @@ Allocation API at: <http://localhost:8000>
 - Per-student happiness score in allocation results
 - Allocation decision audit trail (`availableRooms`, `constraintsApplied`, `alternativesConsidered`)
 
-## 📈 Current Delivery Status (March 2026)
-
-### MVP Scope Progress
-
-- Completed: core authentication, student profiles, consent-based groups, admin hostel/room/rules management, allocation engine integration, swaps, and frontend dashboards
-- Partially complete: allocation approval/finalization workflow (UI placeholder exists; no dedicated finalize endpoint yet)
-- Not started: notification microservice (email/SMS), RabbitMQ integration, Redis caching
-
-Estimated MVP completion: **~82% complete**, **~18% remaining**.
-
-### Full Roadmap Progress
-
-The long-term plan also includes Phase 2/3 modules (maintenance, communication hub, payments, inventory, AI analytics). These are not implemented yet.
-
-Estimated full roadmap completion: **~52% complete**, **~48% remaining**.
 
 ## 🧮 Allocation Algorithm
 
@@ -569,6 +554,7 @@ POST /admin/rules/matrix
 - Delete draft runs
 - System logs and rollback history
 - Dashboard unlock using `hasSubmitted`
+- **Student Eligibility Transparency** toggle to hide/show eligibility in student dashboard
 
 ### Partially Complete
 
@@ -576,7 +562,6 @@ POST /admin/rules/matrix
 - RabbitMQ integration
 - Redis caching
 - Drag-and-drop override UI
-- **Student Eligibility Transparency**: A feature to allow wardens to toggle visibility of hostel eligibility and max roommate limits (applied hostel-wise) on the student dashboard.
 
 ### Not Started
 
