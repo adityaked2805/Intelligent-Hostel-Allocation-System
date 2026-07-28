@@ -176,7 +176,7 @@ export class GroupsService {
     if (!group) return;
 
     // Get limits for the student
-    const eligibility = await this.adminService.getStudentEligibility(studentUserId);
+    const eligibility = await this.adminService.getStudentEligibility(studentUserId, true);
     if (!eligibility.enabled) return; // If visibility is off, we still have the data but might not want to block? 
     // Actually, we SHOULD block regardless of visibility for security.
 
@@ -301,7 +301,7 @@ export class GroupsService {
       }
 
       // 2. Hostel Overlap Check
-      const newEligibility: StudentEligibility = await this.adminService.getStudentEligibility(newStudent.userId);
+      const newEligibility: StudentEligibility = await this.adminService.getStudentEligibility(newStudent.userId, true);
       const newEligibleHostelIds = new Set(newEligibility.hostels.map(h => h.id));
 
       // Check against ALL existing members to find a common overlap
@@ -309,7 +309,7 @@ export class GroupsService {
       let commonHostelIds: Set<number> | null = null;
 
       for (const member of existingMembers) {
-        const mEligibility: StudentEligibility = await this.adminService.getStudentEligibility(member.userId);
+        const mEligibility: StudentEligibility = await this.adminService.getStudentEligibility(member.userId, true);
         const mHostelIds = new Set(mEligibility.hostels.map(h => h.id));
         
         if (commonHostelIds === null) {

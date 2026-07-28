@@ -26,6 +26,12 @@ export default defineConfig({
       "/groups": {
         target: "http://localhost:3000",
         changeOrigin: true,
+        bypass: (req) => {
+          if (req.url === "/groups" && req.method === "GET") {
+            return "/groups";
+          }
+          return undefined;
+        },
       },
       "/students": {
         target: "http://localhost:3000",

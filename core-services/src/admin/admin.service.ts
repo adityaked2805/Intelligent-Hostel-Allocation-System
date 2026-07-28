@@ -1335,7 +1335,7 @@ export class AdminService {
   }
 
   // ============ STUDENT ELIGIBILITY ============
-  async getStudentEligibility(userId: string): Promise<StudentEligibility> {
+  async getStudentEligibility(userId: string, ignoreVisibility = false): Promise<StudentEligibility> {
     const student = await this.studentRepository.findOne({ where: { userId } });
     if (!student) throw new NotFoundException('Student not found');
 
@@ -1343,7 +1343,7 @@ export class AdminService {
     const showEligibility = settings['show_eligibility_to_students'] === 'true';
     const showBatchCapacity = settings['show_batch_capacity_to_students'] === 'true';
     
-    if (!showEligibility) {
+    if (!showEligibility && !ignoreVisibility) {
       return { enabled: false, hostels: [] };
     }
 
